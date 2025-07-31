@@ -4,23 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Michael Patrick Kelly</title>
+
     <!-- Vlastní styl -->
-<link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
 
-<!-- Google Font: Covered By Your Grace -->
-<link
-  href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap"
-  rel="stylesheet"
-/>
+    <!-- Google Font: Covered By Your Grace -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap"
+      rel="stylesheet"
+    />
 
-<!-- Font Awesome pro sociální ikony -->
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  integrity="sha512-BK5A6hzEQ9vQFb1HgOeUOtbS83zpSPPgNTt9MP0LEbA7S4Zg6gY+ZpMv8BJ7OQ2Y7v/9XZ2WygzTcLrF5DgFqg=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
+    <!-- Font Awesome pro sociální ikony -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-BK5A6hzEQ9vQFb1HgOeUOtbS83zpSPPgNTt9MP0LEbA7S4Zg6gY+ZpMv8BJ7OQ2Y7v/9XZ2WygzTcLrF5DgFqg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Ikony navíc -->
     <script
       src="https://kit.fontawesome.com/a076d05399.js"
       crossorigin="anonymous"
@@ -36,7 +39,7 @@
 
     <!-- Levá postranní navigace -->
     <aside class="side-nav">
-      <a href="#">Biographie</a>
+      <a href="#" onclick="zobrazOkna(event)">Biographie</a>
       <a href="#">Texte</a>
       <a href="#">Fotografie</a>
       <a href="#">Music</a>
@@ -48,27 +51,136 @@
       <a href="#">Newsletter</a>
     </aside>
 
-    <!-- Horní hlavička -->
-<header>
-  <div class="branding">
-    <span class="logo-text">michael patrick kelly</span>
-  </div>
+    <!-- Overlay box -->
+    <div class="overlay-container" id="biographie-okna" style="display: none">
+      <div class="overlay-box">
+        <span class="close-btn" onclick="zavritOkna()">×</span>
+        <h3 class="bio-heading">❤️ Biographie Michael Patrick Kelly ❤️ Love</h3>
 
-  <!-- Text uprostřed -->
-  <h1 class="header-title">Willkommen auf der Reise</h1>
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          April 22, 2025 – The title
+          <span style="color: #ce9223; font-weight: bold">TRACES</span> of the
+          new album by
+          <strong style="color: #4137d4">Michael Patrick Kelly</strong> carries
+          symbolic power. He is no longer merely a seeker exploring themes of
+          values and meaning in art; rather, he has made a lasting mark on
+          European music history. Following several global hits and over 20
+          million records sold, his last album “B-O-A-T-S“ (2021) marked the
+          most successful years of his solo career.
+        </p>
 
-  <!-- Pravá část: odkazy a ikony -->
-  <div class="header-right">
-    <a href="#">Kontakt</a>
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-spotify"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          The album proved to be a true hit collection (five Top 5 radio hits,
+          multiple international #1s, Gold and Platinum in several countries,
+          over 250 million streams), followed by arena tours and headliner slots
+          at major festivals in front of a total of 500,000 spectators. Now,
+          <strong style="color: #4137d4">Michael Patrick Kelly</strong> is
+          taking the next step: <br />
+          <span style="color: #9e0c0c; font-weight: bold">"The One"</span> is
+          the first single release from his sixth studio album.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          <span style="color: #9e0c0c; font-weight: bold">"The One"</span>
+          resonates like a promise, reflecting the widespread longing for
+          stability and commitment in a constantly changing world.
+          <strong style="color: #4137d4">Michael Patrick Kelly</strong> takes a
+          different perspective on relationships than most love songs do.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          <strong style="color: #4137d4">Michael Patrick Kelly</strong>:
+          <em
+            >"There are countless songs about the beginning and end of love. But
+            very few celebrate the kind of love that endures through highs and
+            lows and fights for each other. ‘The One’ is about a one-life stand.
+            It’s a process, and—as the lyrics say—‘Forever in the making’.”</em
+          >
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          The classic MPK effect: you believe him when he sings about enduring
+          love in this vibrant, inviting uptempo track. Encouraging and timely,
+          he sings from a place of truth—the musician and peace ambassador who
+          writes songs rooted in real stories.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          A top-tier production team (including Michael Ilbert, Daniel Flamm,
+          Johannes Herbst) wraps his unmistakable four-octave voice in an
+          uplifting guitar pop-rock sound. MPK:
+          <em
+            >“It’s important to me to make real ‘handmade music’ that comes from
+            the heart and not from AI tools.”</em
+          >
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          The recordings for
+          <span style="color: #9e0c0c; font-weight: bold">“The One”</span> took
+          place at the legendary AIR Studio in London, featuring Samuel Dixon,
+          Dan McDougall, and Carlos Garcia. The music video was filmed in
+          <strong>Deadvlei</strong>, Namibia—a ghost town with petrified trees,
+          symbolizing the traces of time.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          <span style="color: #9e0c0c; font-weight: bold">“The One”</span> is
+          available everywhere and follows his latest successful collaboration
+          <em>“Rebellion”</em> with R3HAB and Shaggy.
+        </p>
+
+        <hr style="margin: 2rem 0" />
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          About<strong style="color: #4137d4"> Michael Patrick Kelly:</strong>
+          The Irish-American singer, songwriter, and multi-instrumentalist was
+          born into a famous family band. At 15, he wrote his first global hit,
+          earning over 50 gold and platinum awards and performing in stadiums.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          At 27, he retreated into a monastery for six years before returning
+          with renewed energy and an even more powerful solo career. His hits
+          like <em>“Beautiful Madness”</em>, <em>“Blurry Eyes”</em>, and
+          <em>“Wonders”</em> are now internationally acclaimed.
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          On television, he captivates audiences across generations on shows
+          like <em>“The Voice of Germany”</em> and <em>“Sing meinen Song.”</em>
+        </p>
+
+        <p style="margin-bottom: 1.5rem; line-height: 1.6">
+          For 25 years,
+          <strong style="color: #4137d4">Michael Patrick Kelly</strong> has
+          supported global humanitarian and peace initiatives. In 2017, he
+          created the <strong>PeaceBell</strong> from war debris—a moving bell
+          of peace that opens each of his concerts.
+        </p>
+      </div>
     </div>
-  </div>
-</header>
 
-    </section>
+    <!-- Hlavička -->
+    <header>
+      <div class="branding">
+        <span class="logo-text">michael patrick kelly</span>
+      </div>
+
+      <h1 class="header-title">Welcome to the journey</h1>
+
+      <div class="header-right">
+        <a href="#">Kontakt</a>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-spotify"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Skript -->
+    <script src="java.js"></script>
   </body>
 </html>
