@@ -52,7 +52,8 @@ header {
   font-size: 2rem;
   background: linear-gradient(270deg, #d4af37, #e3c799, #ffffff, #d4af37);
   background-size: 600% 600%;
-  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradientShift 8s ease infinite;
@@ -230,7 +231,8 @@ nav a:hover {
   font-size: 2.3rem;
   background: linear-gradient(270deg, #cf7b1a, #0c0700, #860f0f, #886b0c);
   background-size: 900% 900%;
-  -webkit-background-clip: text;
+  background-clip: text; /* standardní verze */
+  -webkit-background-clip: text; /* prefix pro Chrome a Safari */
   -webkit-text-fill-color: transparent;
   animation: gradientShift 20s ease infinite, heartbeat 3s ease-in-out infinite;
   text-align: center;

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Texte – Michael Patrick Kelly</title>
+    <style>
+      :root {
+        --bg: #272621;
+        --panel: #e7b444;
+        --ink: #f6f1e7;
+        --line: #e8d9b4;
+        --muted: #d8cba7;
+      }
+
+      html,
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        background: url("images/brief.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: var(--ink);
+      }
+
+      .wrap {
+        max-width: 1100px; /* pevná šířka */
+        height: auto; /* pevná výška */
+        margin: 1cm auto 0; /* ← přidáno: posun dolů o 2 cm */
+        padding: 24px;
+        background-color: rgba(27, 26, 22, 0.85); /* průhledný tmavý podklad */
+        border-radius: 12px;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      header img {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: clamp(22px, 3vw, 32px);
+        margin: 0;
+      }
+
+      .tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+      }
+
+      .tab-btn {
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        border-radius: 999px;
+        cursor: pointer;
+        letter-spacing: 0.08em;
+      }
+
+      .tab-btn[aria-selected="true"] {
+        background: var(--panel);
+        border-color: transparent;
+      }
+
+      .tab-btn:hover {
+        background-color: #af8e4c; /* zlatá jako vybraná záložka */
+        color: #000; /* černý text pro kontrast */
+        border-color: transparent; /* skryje rámeček */
+        transition: all 0.3s ease; /* plynulý přechod */
+      }
+
+      .album {
+        display: none;
+        background: rgba(194, 148, 50, 0.9);
+        border-radius: 14px;
+        padding: 20px;
+      }
+
+      .album.active {
+        display: block;
+      }
+
+      .album-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 10px;
+      }
+
+      .album-head img {
+        width: 84px;
+        height: 84px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid var(--line);
+      }
+
+      .album-head h2 {
+        margin: 0;
+        font-size: clamp(18px, 2.5vw, 26px);
+        letter-spacing: 0.06em;
+      }
+
+      .year {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .search {
+        margin: 12px 0 18px;
+      }
+
+      .search input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid var(--line);
+        background: #2a2518;
+        color: var(--ink);
+      }
+
+      details {
+        border-top: 1px solid var(--line);
+      }
+
+      details:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+
+      /* menší název v liště akordeonu – vlevo */
+      summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 16px 8px;
+        cursor: pointer;
+        padding: 16px 8px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        align-items: center;
+        justify-content: center; /* tady je změna */
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-align: left;
+        letter-spacing: 0.09em;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      .chev {
+        margin-left: 0.5rem;
+        transition: transform 0.25s ease;
+      }
+      details[open] .chev {
+        transform: rotate(180deg);
+      }
+
+      /* po rozkliknutí schovat lištu se summary */
+      details[open] > summary {
+        display: none;
+      }
+
+      /* horní řádek v otevřeném detailu: velký název + audio/ovladače */
+      .song-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin: 0.25rem 0 1rem;
+      }
+      .song-title {
+        text-align: center;
+        font-size: clamp(24px, 3.2vw, 40px);
+        margin: 0;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text; /* pro Chrome, Safari */
+        -webkit-text-fill-color: transparent;
+        animation: colorShift 5s linear infinite;
+      }
+
+      @keyframes colorShift {
+       0% {
+       background-position: 0% center;
+      }
+      100% {
+       background-position: 100% center;
+      }
+    }
+
+      .song-audio {
+       position: relative;
+       top: 3mm; /* posun dolů o 3 mm */
+      }
+
+      .song-summary {
+      display: flex;            /* aby se text a šipka daly snadno zarovnat */
+      align-items: center;      /* vertikální vyrovnání */
+      justify-content: flex-start; /* doleva */
+      padding-left: 20px;       /* vlastní odsazení */
+      list-style: none;         /* skryje výchozí marker */
+     }
+
+     .song-summary::-webkit-details-marker {
+      display: none; /* skryje šipku v Chrome/Safari */
+     }
+
+      /* výchozí barva textu */
+      .lyrics-body { 
+       color: #fff; 
+       text-align: center; 
+       font-size: 1.1rem; 
+       line-height: 1.4; /* menší mezery mezi řádky */
+      }
+
+      /* efekt na jednotlivá slova */
+      .lyrics-body span { transition: color .2s ease; cursor:default; }
+      .lyrics-body span:hover { color:#000; }
+
+      /* drobné tlačítko vedle audia */
+      .song-ctl {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      .util {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 8px 0 0;
+      }
+
+      .util a,
+      .util button {
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+      }
+
+      @media (max-width: 640px) {
+        .album-head {
+          flex-direction: row;
+        }
+        .album-head img {
+          width: 64px;
+          height: 64px;
+        }
+      }
+
+      .close-song {
+        position: absolute;
+        top: 8px;
+        right: 12px; /* vpravo */
+        font-size: 1.5rem;
+        background: transparent;
+        border: none;
+        color: #fff; /* bílé jako text */
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s ease;
+       }
+        
+       .close-song:hover {
+         color: #000; /* zčerná při hoveru */
+       }
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <img src="images/albums/traces.jpg" alt="Album cover placeholder" />
+        <img src="images/albums/boats.jpg" alt="Album cover placeholder" />
+        <img src="images/albums/id.jpg" alt="Album cover placeholder" />
+        <img src="images/albums/human.jpg" alt="Album cover placeholder" />
+        <img src="images/albums/ruah.jpg" alt="Album cover placeholder" />
+        <img src="images/albums/in exile.jpg" alt="Album cover placeholder" />
+        <div>
+          <h1>Texte</h1>
+          <div class="sub" aria-hidden="true">
+            Complete lyrics, organized by album
+          </div>
+        </div>
+      </header>
+
+      <!-- ZÁLOŽKY -->
+      <nav class="tabs" role="tablist" aria-label="Alba">
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tab-btraces"
+          id="tabbtn-traces"
+        >
+          TRACES
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="true"
+          aria-controls="tab-boats"
+          id="tabbtn-boats"
+        >
+          B•O•A•T•S
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-id"
+          id="tabbtn-id"
+        >
+          iD
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-human"
+          id="tabbtn-human"
+        >
+          HUMAN
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-ruah"
+          id="tabbtn-ruah"
+        >
+          RUAH
+        </button>
+        <button
+          class="tab-btn"
+          role="tab"
+          aria-selected="false"
+          aria-controls="tab-inexile"
+          id="tabbtn-inexile"
+        >
+          IN EXILE
+        </button>
+      </nav>
+
+      <!-- ALBUM: BOATS -->
+      <section
+        class="album active"
+        id="tab-boats"
+        role="tabpanel"
+        aria-labelledby="tabbtn-boats"
+      >
+        <div class="album-head">
+          <img src="images/albums/boats.jpg" alt="Obal alba BOATS" />
+          <div>
+            <h2>BOATS <span class="year">2021</span></h2>
+            <div class="util">
+              <a href="#" aria-label="Přehrát album">Spotify</a>
+              <a href="#" aria-label="Koupit album">Shop</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="search">
+          <input
+            id="search-boats"
+            type="search"
+            placeholder="Search song or lyrics…"
+            aria-label="Search in album BOATS"
+          />
+        </div>
+
+        <!-- PÍSNĚ -->
+        <details data-title="BOATS">
+         <summary class="song-summary">BOATS <span class="chev">▾</span></summary>
+        <div class="lyrics" style="position: relative;">
+        <button class="close-song" aria-label="Close song">&times;</button>
+        <div class="song-top">
+         <h2 class="song-title">BOATS</h2>
+         <audio class="song-audio" src="audio/boats.mp3" preload="metadata" controls></audio>
+        </div>
+
+           <div class="lyrics-body">
+            Have we been lying to ourselves again to cover up <br />
+            the things that have been going on? <br />
+            Is it because we’re caught up in our wishful thinking <br />
+            that it seems, that nothing’s wrong ? <br />
+            <br />
+            I know I know, I know we know <br />
+            <br />
+            We like to change our history <br />
+            And justify, justify <br />
+            We’ll base it on a true story <br />
+            But I know we know, I know we know <br />
+            <br />
+            We’ll tell the wind which way <br />
+            To sail these boats <br />
+            We like to change our history <br />
+            <br />
+            Come on, come on, come on <br />
+            Come on let’s right some wrongs <br />
+            Come on,come on, come on <br />
+            <br />
+            You’re acting like a child whose got no worries <br />
+            but behind it all, you’re a raging bull <br />
+            But look at me ‘cause I’m no better, getting good <br />
+            at playing the role of being mister cool <br />
+            <br />
+            I know I know, I know we know <br />
+            <br />
+            We like to change our history <br />
+            And justify, justify <br />
+            We’ll base it on a true story <br />
+            But I know we know, I know we know <br />
+            <br />
+            We’ll tell the wind which way <br />
+            To sail these boats <br />
+            We like to change our history <br />
+            <br />
+            Come on, come on, come on <br />
+            Come on let’s right some wrongs <br />
+            Come on, come on, come on <br />
+            <br />
+            We can change the names <br />
+            To protect the innocent <br />
+            The times and the dates <br />
+            Of every incident <br />
+            We can change the names <br />
+            To protect the innocent <br />
+            <br />
+            I know I know, I know we know <br />
+            We like to change our history <br />
+            And justify, justify <br />
+            We’ll base it on a true story <br />
+            But I know we know, I know we know <br />
+            <br />
+            We’ll tell the wind which way <br />
+            To sail these boats <br />
+            We like to change our history <br />
+            <br />
+            Come on, come on, come on <br />
+            Come on let’s right some wrongs <br />
+            Come on, come on, come on <br />
+            Come on let’s right some wrongs <br />
+            Come on, come on, come on <br />
+            Come on let’s right some wrongs <br />
+            Come on, come on, come on <br />
+            <br />
+          </div>
+        </details>
+
+        <details data-title="DIAMONDS & METALS">
+  <summary class="song-summary">DIAMONDS & METALS <span class="chev">▾</span></summary>
+  <div class="lyrics" style="position: relative;">
+    <button class="close-song" aria-label="Close song">&times;</button>
+    <div class="song-top">
+      <h2 class="song-title">DIAMONDS & METALS</h2>
+      <audio class="song-audio" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
+    </div>
+
+    <div class="lyrics-body">
+        Out on the echoes, right on the edge <br />
+        Diamonds and metals, hey ey ey <br />
+        Sold out in battles, fortune and fate <br />
+        Don’t turn to question why or what we know <br />
+        We take the poison, build barricades <br />
+        Hey ey ey ey yeah <br />
+        <br />
+        Don’t want an empire <br />
+        Don’t want to conquer <br />
+        Can I just be a friend <br />
+        Can I just be your brother <br />
+        Don’t want a new world <br />
+        Don’t want an Idol <br />
+        Like a father to a son <br />
+        Can I just sit beside you <br />
+        <br />
+        Huu huu huu <br />
+        <br />
+        Out on the echoes, right on the edge <br />
+        Diamonds and metals, mm, running from the <br />
+        Machine emotion, fortune and fake <br />
+        Don’t turn to question why or what we know <br />
+        We take the poison, build barricades <br />
+        Hey ey ey ey yeah <br />
+        <br />
+        Don’t want an empire <br />
+        Don’t want to conquer <br />
+        Can I just be a friend <br />
+        Can I just be your brother <br />
+        Don’t want a new world <br />
+        Don’t want an Idol <br />
+        Like a father to a son <br />
+        Can I just sit beside you <br />
+        <br />
+        We don’t need an empire <br />
+        Don’t need to conquer <br />
+        Can’t we just be friends <br />
+        Can’t we just be brothers <br />
+        We don’t need a new world <br />
+        Don’t need an Idol <br />
+        Like a father to a son <br />
+        I just wanna sit beside you <br />
+        <br />
+        Huu huu huu <br />
+        <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh oh oh <br />
+        <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh <br />
+        Oh oh oh oh oh oh oh <br />
+        <br />
+        Huu huu huu <br />
+        <br />
+
+
+  </div>
+</details>
+
+      <!-- ALBUM: iD -->
+      <section
+        class="album"
+        id="tab-id"
+        role="tabpanel"
+        aria-labelledby="tabbtn-id"
+      >
+        <div class="album-head">
+          <img src="images/albums/id.jpg" alt="Obal alba iD" />
+          <div>
+            <h2>iD <span class="year">2017</span></h2>
+          </div>
+        </div>
+        <div class="search">
+          <input id="search-id" type="search" placeholder="Hledat v albu iD…" />
+        </div>
+        <!-- Písně -->
+      </section>
+
+      <!-- Další alba... -->
+    </div>
+
+    <script>
+      // Přepínání záložek
+      const tabs = document.querySelectorAll(".tab-btn");
+      const panels = document.querySelectorAll(".album");
+      tabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabs.forEach((b) => b.setAttribute("aria-selected", "false"));
+          btn.setAttribute("aria-selected", "true");
+          panels.forEach((p) => p.classList.remove("active"));
+          document
+            .getElementById(btn.getAttribute("aria-controls"))
+            .classList.add("active");
+        });
+      });
+
+      // Vyhledávání
+      document.querySelectorAll(".search input").forEach((input) => {
+        input.addEventListener("input", (e) => {
+          const q = e.target.value.trim().toLowerCase();
+          const album = e.target.closest(".album");
+          album.querySelectorAll("details").forEach((d) => {
+            const title = (d.dataset.title || "").toLowerCase();
+            const body =
+              d.querySelector(".lyrics")?.textContent.toLowerCase() || "";
+            const match = title.includes(q) || body.includes(q);
+            d.style.display = match ? "" : "none";
+          });
+        });
+      });
+
+      // Kopírování textu
+      document.addEventListener("click", (e) => {
+        if (e.target.matches("[data-copy]")) {
+          const lyrics = e.target.closest(".lyrics").innerText;
+          navigator.clipboard.writeText(lyrics).then(() => {
+            e.target.textContent = "✔ Zkopírováno";
+            setTimeout(() => (e.target.textContent = "📋 Kopírovat"), 1200);
+          });
+        }
+      });
+
+      // když se otevře kterýkoli <details>, pusť jeho audio a zastav ostatní
+      document.querySelectorAll("details").forEach((det) => {
+        det.addEventListener("toggle", () => {
+          const thisAudio = det.querySelector(".song-audio");
+          const allAudios = document.querySelectorAll(".song-audio");
+
+          if (det.open && thisAudio) {
+            // pauzni ostatní
+            allAudios.forEach((a) => {
+              if (a !== thisAudio) {
+                a.pause();
+                a.currentTime = 0;
+              }
+            });
+            // přehraj aktuální
+            thisAudio.play().catch(() => {
+              /* ignoruj autoplay blok, uživatel klikl */
+            });
+          } else if (thisAudio) {
+            thisAudio.pause();
+          }
+        });
+      });
+
+      // stop/mute tlačítka u každé písně
+      document.addEventListener("click", (e) => {
+        if (!e.target.classList.contains("song-ctl")) return;
+        const wrap = e.target.closest(".lyrics");
+        const audio = wrap.querySelector(".song-audio");
+        const action = e.target.dataset.action;
+
+        if (action === "stop") {
+          audio.pause();
+          audio.currentTime = 0;
+        } else if (action === "mute") {
+          audio.muted = !audio.muted;
+          e.target.textContent = audio.muted ? "Unmute" : "Mute";
+        }
+      });
+
+      function wrapWordsIn(block){
+  // projdeme jen textové uzly (br zůstanou nedotčené)
+  const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(textNode=>{
+    const frag = document.createDocumentFragment();
+    // rozděl na slova a mezery: zachováme mezery i zalomení
+    textNode.nodeValue.split(/(\s+)/).forEach(part=>{
+      if (/^\s+$/.test(part)) {
+        frag.appendChild(document.createTextNode(part));
+      } else {
+        const span = document.createElement('span');
+        span.textContent = part;
+        frag.appendChild(span);
+      }
+    });
+    textNode.parentNode.replaceChild(frag, textNode);
+  });
+}
+
+// aplikuj na všechny texty písní
+document.querySelectorAll('.lyrics-body').forEach(wrapWordsIn);
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('close-song')) {
+    const details = e.target.closest('details');
+    if (details) {
+      details.open = false; // zavře píseň
+    }
+  }
+});
+    </script>
+  </body>
+</html>
