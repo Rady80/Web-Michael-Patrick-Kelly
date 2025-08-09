@@ -257,3 +257,54 @@ nav a:hover {
     transform: scale(1);
   }
 }
+
+/* Responsivní úpravy pro menší obrazovky */
+@media (max-width: 1024px) {
+  .overlay-box {
+    width: 90%;
+    max-height: 80vh;
+    font-size: 0.95rem;
+    padding: 1rem;
+  }
+
+  .side-nav {
+    width: 180px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-nav {
+    position: fixed;
+    left: -200px;
+    top: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    transition: left 0.3s ease;
+    z-index: 9999;
+  }
+
+  /* Otevřená navigace */
+  .side-nav.open {
+    left: 0;
+  }
+
+  .overlay-box {
+    width: 95%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .header-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay-box {
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+}

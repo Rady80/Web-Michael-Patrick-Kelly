@@ -24,7 +24,7 @@
       }
 
       .wrap {
-        max-width: 1100px; /* pevná šířka */
+        max-width: 1260px; /* pevná šířka */
         height: auto; /* pevná výška */
         margin: 1cm auto 0; /* ← přidáno: posun dolů o 2 cm */
         padding: 24px;
@@ -32,20 +32,27 @@
         border-radius: 12px;
       }
 
-      header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 16px;
-      }
+      /* rozložení hlavičky */
+header{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px; /* řádek, sloupec */
+}
 
       header img {
-        width: 56px;
-        height: 56px;
-        object-fit: cover;
-        border-radius: 8px;
-      }
+  width: 100px;   /* šířka ikony */
+  height: 100px;  /* výška ikony */
+  object-fit: cover; /* zachová poměr a ořízne */
+  border-radius: 12px; /* pokud chceš zaoblené rohy */
+  margin: 0 5px; /* mezery mezi ikonami */
+}
 
+header img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
       h1 {
         font-size: clamp(22px, 3vw, 32px);
         margin: 0;
@@ -59,30 +66,45 @@
       }
 
       .tab-btn {
-        padding: 10px 14px;
-        border: 1px solid var(--line);
-        background: transparent;
-        color: var(--ink);
-        border-radius: 999px;
-        cursor: pointer;
-        letter-spacing: 0.08em;
-      }
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
+}
 
-      .tab-btn[aria-selected="true"] {
-        background: var(--panel);
-        border-color: transparent;
-      }
+      /* jen vybraná záložka svítí žlutě */
+.tab-btn[aria-selected="true"] {
+  background: #f0be52;   /* tvoje žlutá */
+  color: #000;
+  border-color: transparent;
+}
+.tab-btn:hover:not([aria-selected="true"]) {
+  background-color: rgba(240,190,82,0.2);
+}
 
-      .tab-btn:hover {
-        background-color: #af8e4c; /* zlatá jako vybraná záložka */
-        color: #000; /* černý text pro kontrast */
-        border-color: transparent; /* skryje rámeček */
-        transition: all 0.3s ease; /* plynulý přechod */
-      }
+      .tabs-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* aby se to na menších obrazovkách zalomilo */
+  gap: 1rem; /* mezera mezi záložkami a textem */
+}
+
+.album-sub {
+  display: inline-block;
+  margin-left: 14px;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  color: #fff;
+  opacity: 0.8;
+}
 
       .album {
         display: none;
-        background: rgba(194, 148, 50, 0.9);
+        background-color: #a37218dc;
         border-radius: 14px;
         padding: 20px;
       }
@@ -107,10 +129,50 @@
       }
 
       .album-head h2 {
+        font-size: 2.5rem; /* větší text */
         margin: 0;
         font-size: clamp(18px, 2.5vw, 26px);
         letter-spacing: 0.06em;
+        font-weight: bold;
       }
+
+      .album-head .year {
+  color: #d8b36d; /* světlejší kontrastní barva */
+  font-weight: normal;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+      .album-cover {
+  width: 150px;       /* větší základní velikost */
+  height: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.album-cover:hover {
+  transform: scale(1.05); /* jemné zvětšení při najetí */
+}
+
+/* Lightbox overlay */
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
 
       .year {
         color: var(--muted);
@@ -287,7 +349,46 @@
          color: #000; /* zčerná při hoveru */
        }
 
+       /* umístíme Back relativně k HLAVIČCE, ne k celé stránce */
+      header {
+       position: relative;
+      }
 
+      /* aby se Back nevešel do h1, dáme mu vpravo trochu místa */
+      h1 { padding-right: 90px; }  /* klidně uprav číslo */
+
+      
+/* aby byl text vedle záložek v jedné řadě */
+.tabs { 
+  display: inline-flex; 
+  gap: 8px; 
+  vertical-align: middle;
+}
+
+
+/* Back vpravo nahoře uvnitř headeru */
+.back-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1rem;
+  border: 1px solid #d4c98a;
+  border-radius: 2rem;
+  background-color: transparent;
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-icon:hover {
+  background: var(--panel);
+  color: #000;
+  border-color: transparent;
+}
 
     </style>
   </head>
@@ -300,34 +401,17 @@
         <img src="images/albums/human.jpg" alt="Album cover placeholder" />
         <img src="images/albums/ruah.jpg" alt="Album cover placeholder" />
         <img src="images/albums/in exile.jpg" alt="Album cover placeholder" />
-        <div>
-          <h1>Texte</h1>
-          <div class="sub" aria-hidden="true">
-            Complete lyrics, organized by album
-          </div>
-        </div>
-      </header>
+
+        <a href="index.html" class="back-icon" title="Zpět na hlavní stránku">← Back</a>
+
+       <h1>Texte</h1>
 
       <!-- ZÁLOŽKY -->
       <nav class="tabs" role="tablist" aria-label="Alba">
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="true"
-          aria-controls="tab-btraces"
-          id="tabbtn-traces"
-        >
-          TRACES
-        </button>
-        <button
-          class="tab-btn"
-          role="tab"
-          aria-selected="true"
-          aria-controls="tab-boats"
-          id="tabbtn-boats"
-        >
-          B•O•A•T•S
-        </button>
+        <button class="tab-btn" role="tab" aria-selected="true"
+        aria-controls="tab-traces" id="tabbtn-traces">TRACES</button>
+        <button class="tab-btn" role="tab" aria-selected="false"
+        aria-controls="tab-boats" id="tabbtn-boats">B•O•A•T•S</button>
         <button
           class="tab-btn"
           role="tab"
@@ -366,9 +450,99 @@
         </button>
       </nav>
 
+  <!-- Text hned vedle záložek -->
+      <span class="album-sub">Complete lyrics, organized by album</span>
+    </header>
+
+    <!-- Lightbox (AŽ za headerem) -->
+    <div id="lightbox">
+      <img src="" alt="Large album cover">
+    </div>
+
+    <!-- ALBUM: TRACES -->
+<section
+  class="album active"
+  id="tab-traces"
+  role="tabpanel"
+  aria-labelledby="tabbtn-traces"
+>
+  <div class="album-head">
+    <img src="images/albums/traces.jpg" alt="Obal alba TRACES" />
+    <div>
+      <h2>TRACES <span class="year">2025</span></h2>
+    </div>
+  </div>
+
+  <div class="search">
+    <input
+      id="search-traces"
+      type="search"
+      placeholder="Search song or lyrics…"
+      aria-label="Search in album TRACES"
+    />
+  </div>
+
+  <!-- PÍSEŇ: THE ONE -->
+  <details data-title="THE ONE">
+    <summary class="song-summary">THE ONE <span class="chev">▾</span></summary>
+
+    <div class="lyrics" style="position: relative;">
+      <button class="close-song" aria-label="Close song">&times;</button>
+
+      <div class="song-top">
+        <h2 class="song-title">THE ONE</h2>
+        <audio class="song-audio" src="audio/the-one.mp3" preload="metadata" controls></audio>
+      </div>
+
+      <div class="lyrics-body">
+        I remember the night in the heat of July<br>
+        we were strangers<br>
+        After the thunder cried, the lightning was kind of amazing<br>
+        I got lost in your glow, felt so high even though I was sober<br>
+        You had a reckless style and your smile was rarer than gold dust<br>
+        <br>
+        The way we hold on, it's a miracle<br>
+        This is a love song forever in the makin'<br>
+        <br>
+        Oh, the years go by<br>
+        But you still light up, light up my heart<br>
+        Oh, you know time flies<br>
+        But you still light up, light up my dark<br>
+        It's been the wildest dream, a masterpiece<br>
+        Let's ride around the sun<br>
+        Darlin', after all this time, you're still the one<br>
+        <br>
+        People come, people go, nothin' lasts anymore, it's a strange world<br>
+        But dreaming side by side, I wake up believin' in angels<br>
+        Yeah, you know the way the sparks still fly, how you read my mind, it's electric<br>
+        And when I leave this life, I'll know loving you was always the best bit<br>
+        <br>
+        The way we hold on, it's a miracle<br>
+        This is a love song forever in the makin'<br>
+        <br>
+        Oh, the years go by<br>
+        But you still light up, light up my heart<br>
+        Oh, you know time flies<br>
+        But you still light up, light up my dark<br>
+        It's been the wildest dream, a masterpiece<br>
+        Let's ride around the sun<br>
+        Darling, after all this time, you're still the one<br>
+        Still the one<br>
+        It's been the wildest dream, a masterpiece<br>
+        Let's ride around the sun<br>
+        Darling, after all this time<br>
+        You know I need you by my side<br>
+        I tell ya, after all this time, you're still the one<br>
+        <br>
+      </div>
+    </div>
+  </details>
+</section>
+
+
       <!-- ALBUM: BOATS -->
       <section
-        class="album active"
+        class="album"
         id="tab-boats"
         role="tabpanel"
         aria-labelledby="tabbtn-boats"
@@ -377,10 +551,6 @@
           <img src="images/albums/boats.jpg" alt="Obal alba BOATS" />
           <div>
             <h2>BOATS <span class="year">2021</span></h2>
-            <div class="util">
-              <a href="#" aria-label="Přehrát album">Spotify</a>
-              <a href="#" aria-label="Koupit album">Shop</a>
-            </div>
           </div>
         </div>
 
@@ -540,6 +710,20 @@
         Huu huu huu <br />
         <br />
 
+        </div>
+      </details>
+
+        <details data-title="RUNNING BLIND">
+      <summary class="song-summary">RUNNING BLIND<span class="chev">▾</span></summary>
+     <div class="lyrics" style="position: relative;">
+    <button class="close-song" aria-label="Close song">&times;</button>
+    <div class="song-top">
+      <h2 class="song-title">RUNNING BLIND</h2>
+      <audio class="song-audio" src="audio/running blind.mp3" preload="metadata" controls></audio>
+    </div>
+
+     <div class="lyrics-body"></div>
+
 
   </div>
 </details>
@@ -567,19 +751,34 @@
     </div>
 
     <script>
-      // Přepínání záložek
-      const tabs = document.querySelectorAll(".tab-btn");
-      const panels = document.querySelectorAll(".album");
-      tabs.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          tabs.forEach((b) => b.setAttribute("aria-selected", "false"));
-          btn.setAttribute("aria-selected", "true");
-          panels.forEach((p) => p.classList.remove("active"));
-          document
-            .getElementById(btn.getAttribute("aria-controls"))
-            .classList.add("active");
-        });
-      });
+      // Přepínání záložek bezpečně
+const tabs = document.querySelectorAll(".tab-btn");
+const panels = document.querySelectorAll(".album");
+
+function activateTab(btn){
+  const targetId = btn.getAttribute("aria-controls");
+  const panel = document.getElementById(targetId);
+  if (!panel) return; // když je překlep v id, radši nic nenič
+
+  // odeber selected ze všech
+  tabs.forEach(b => b.setAttribute("aria-selected", "false"));
+  // schovej všechny panely
+  panels.forEach(p => p.classList.remove("active"));
+
+  // nastav vybranou
+  btn.setAttribute("aria-selected", "true");
+  panel.classList.add("active");
+}
+
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => activateTab(btn));
+});
+
+// pojistka po načtení: žlutá jen na TRACES a aktivní je TRACES
+window.addEventListener('DOMContentLoaded', () => {
+  const start = document.getElementById('tabbtn-traces');
+  if (start) activateTab(start);
+});
 
       // Vyhledávání
       document.querySelectorAll(".search input").forEach((input) => {
@@ -683,6 +882,21 @@ document.addEventListener('click', e => {
       details.open = false; // zavře píseň
     }
   }
+});
+
+const covers = document.querySelectorAll('header img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+
+covers.forEach(cover => {
+  cover.addEventListener('click', () => {
+    lightboxImg.src = cover.src;
+    lightbox.style.display = 'flex';
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
 });
     </script>
   </body>
