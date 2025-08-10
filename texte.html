@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Texte – Michael Patrick Kelly</title>
     <style>
-      :root {
-        --bg: #272621;
-        --panel: #e7b444;
-        --ink: #f6f1e7;
-        --line: #e8d9b4;
-        --muted: #d8cba7;
-      }
 
-      html,
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
-          sans-serif;
-        background: url("images/brief.jpg") no-repeat center center fixed;
-        background-size: cover;
-        color: var(--ink);
-      }
+:root {
+  --bg: #272621;
+  --panel: #e7b444;
+  --ink: #f6f1e7;
+  --line: #e8d9b4;
+  --muted: #d8cba7;
+}
 
-      .wrap {
-        max-width: 1260px; /* pevná šířka */
-        height: auto; /* pevná výška */
-        margin: 1cm auto 0; /* ← přidáno: posun dolů o 2 cm */
-        padding: 24px;
-        background-color: rgba(27, 26, 22, 0.85); /* průhledný tmavý podklad */
-        border-radius: 12px;
-      }
+html,
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+  sans-serif;
+  background: url("images/brief.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--ink);
+}
 
-      /* rozložení hlavičky */
+.wrap {
+  max-width: 1260px; /* pevná šířka */
+  height: auto; /* pevná výška */
+  margin: 1cm auto 0; /* ← přidáno: posun dolů o 2 cm */
+  padding: 24px;
+  background-color: rgba(27, 26, 22, 0.85); /* průhledný tmavý podklad */
+  border-radius: 12px;
+}
+
+/* rozložení hlavičky */
 header{
   position: relative;
   display: flex;
@@ -41,7 +42,7 @@ header{
   gap: 12px 16px; /* řádek, sloupec */
 }
 
-      header img {
+header img {
   width: 100px;   /* šířka ikony */
   height: 100px;  /* výška ikony */
   object-fit: cover; /* zachová poměr a ořízne */
@@ -53,19 +54,20 @@ header img:hover {
   transform: scale(1.1);
   transition: transform 0.3s ease;
 }
-      h1 {
-        font-size: clamp(22px, 3vw, 32px);
-        margin: 0;
-      }
+      
+h1 {
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 0;
+}
 
-      .tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 16px 0;
-      }
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
 
-      .tab-btn {
+.tab-btn {
   padding: 10px 14px;
   border: 1px solid var(--line);
   background: transparent;
@@ -76,17 +78,18 @@ header img:hover {
   transition: all 0.3s ease;
 }
 
-      /* jen vybraná záložka svítí žlutě */
+/* jen vybraná záložka svítí žlutě */
 .tab-btn[aria-selected="true"] {
   background: #f0be52;   /* tvoje žlutá */
   color: #000;
   border-color: transparent;
 }
+
 .tab-btn:hover:not([aria-selected="true"]) {
   background-color: rgba(240,190,82,0.2);
 }
 
-      .tabs-wrapper {
+.tabs-wrapper {
   display: flex;
   align-items: center;
   flex-wrap: wrap; /* aby se to na menších obrazovkách zalomilo */
@@ -102,48 +105,48 @@ header img:hover {
   opacity: 0.8;
 }
 
-      .album {
-        display: none;
-        background-color: #e7ad40dc;
-        border-radius: 14px;
-        padding: 20px;
-      }
+.album {
+  display: none;
+  background-color: #e7ad40dc;
+  border-radius: 14px;
+  padding: 20px;
+}
 
-      .album.active {
-        display: block;
-      }
+.album.active {
+  display: block;
+}
 
-      .album-head {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 10px;
-      }
+.album-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
 
-      .album-head img {
-        width: 84px;
-        height: 84px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 2px solid var(--line);
-      }
+.album-head img {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid var(--line);
+}
 
-      .album-head h2 {
-        font-size: 2.5rem; /* větší text */
-        margin: 0;
-        font-size: clamp(18px, 2.5vw, 26px);
-        letter-spacing: 0.06em;
-        font-weight: bold;
-      }
+.album-head h2 {
+  font-size: 2.5rem; /* větší text */
+  margin: 0;
+  font-size: clamp(18px, 2.5vw, 26px);
+  letter-spacing: 0.06em;
+  font-weight: bold;
+}
 
-      .album-head .year {
+.album-head .year {
   color: #0e0d0d; /* světlejší kontrastní barva */
   font-weight: normal;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
-      .album-cover {
-  width: 150px;       /* větší základní velikost */
+.album-cover {
+  width: 150px; /* větší základní velikost */
   height: 150px;
   border-radius: 10px;
   cursor: pointer;
@@ -174,188 +177,192 @@ header img:hover {
   border-radius: 10px;
 }
 
-      .year {
-        color: var(--muted);
-        font-weight: 600;
-      }
+.year {
+  color: var(--muted);
+  font-weight: 600;
+}
 
-      .search {
-        margin: 12px 0 18px;
-      }
+.search {
+  margin: 12px 0 18px;
+}
 
-      .search input {
-        width: 100%;
-        padding: 12px 14px;
-        border-radius: 10px;
-        border: 1px solid var(--line);
-        background: #2a2518;
-        color: var(--ink);
-      }
+.search input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #2a2518;
+  color: var(--ink);
+}
 
-      details {
-        border-top: 1px solid var(--line);
-      }
+details {
+  border-top: 1px solid var(--line);
+}
 
-      details:last-child {
-        border-bottom: 1px solid var(--line);
-      }
+details:last-child {
+  border-bottom: 1px solid var(--line);
+}
 
-      /* menší název v liště akordeonu – vlevo */
-      summary {
-        list-style: none;
-        cursor: pointer;
-        padding: 16px 8px;
-        cursor: pointer;
-        padding: 16px 8px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 0.5rem;
-        align-items: center;
-        justify-content: center; /* tady je změna */
-        font-weight: 700;
-        letter-spacing: 0.09em;
-        text-align: left;
-        letter-spacing: 0.09em;
-      }
+/* menší název v liště akordeonu – vlevo */
+summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 8px;
+  cursor: pointer;
+  padding: 16px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center; /* tady je změna */
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-align: left;
+  letter-spacing: 0.09em;
+}
 
-      summary::-webkit-details-marker {
-        display: none;
-      }
-      .chev {
-        margin-left: 0.5rem;
-        transition: transform 0.25s ease;
-      }
-      details[open] .chev {
-        transform: rotate(180deg);
-      }
+summary::-webkit-details-marker {
+  display: none;
+}
 
-      /* po rozkliknutí schovat lištu se summary */
-      details[open] > summary {
-        display: none;
-      }
+.chev {
+  margin-left: 0.5rem;
+  transition: transform 0.25s ease;
+}
 
-      /* horní řádek v otevřeném detailu: velký název + audio/ovladače */
-      .song-top {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin: 0.25rem 0 1rem;
-      }
-      .song-title {
-        text-align: center;
-        font-size: clamp(24px, 3.2vw, 40px);
-        margin: 0;
-        font-weight: 800;
-        letter-spacing: 0.06em;
-        background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-        background-size: 300%;
-        background-clip: text;
-        -webkit-background-clip: text; /* pro Chrome, Safari */
-        -webkit-text-fill-color: transparent;
-        animation: colorShift 5s linear infinite;
-      }
+details[open] .chev {
+  transform: rotate(180deg);
+}
 
-      @keyframes colorShift {
-       0% {
-       background-position: 0% center;
-      }
-      100% {
-       background-position: 100% center;
-      }
-    }
+/* po rozkliknutí schovat lištu se summary */
+details[open] > summary {
+  display: none;
+}
 
-      .song-audio {
-       position: relative;
-       top: 3mm; /* posun dolů o 3 mm */
-      }
+/* horní řádek v otevřeném detailu: velký název + audio/ovladače */
+.song-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0.25rem 0 1rem;
+}
+  
+.song-title {
+  text-align: center;
+  font-size: clamp(24px, 3.2vw, 40px);
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s linear infinite;
+}
 
-      .song-summary {
-      display: flex;            /* aby se text a šipka daly snadno zarovnat */
-      align-items: center;      /* vertikální vyrovnání */
-      justify-content: flex-start; /* doleva */
-      padding-left: 20px;       /* vlastní odsazení */
-      list-style: none;         /* skryje výchozí marker */
-     }
+@keyframes colorShift {
+  0% {
+  background-position: 0% center;
+}
+  100% {
+  background-position: 100% center;
+}
+  }
 
-     .song-summary::-webkit-details-marker {
-      display: none; /* skryje šipku v Chrome/Safari */
-     }
+.song-audio {
+  position: relative;
+  top: 3mm; /* posun dolů o 3 mm */
+}
 
-      /* výchozí barva textu */
-      .lyrics-body { 
-       color: #fff; 
-       text-align: center; 
-       font-size: 1.1rem; 
-       line-height: 1.4; /* menší mezery mezi řádky */
-      }
+.song-summary {
+  display: flex;            /* aby se text a šipka daly snadno zarovnat */
+  align-items: center;      /* vertikální vyrovnání */
+  justify-content: flex-start; /* doleva */
+  padding-left: 20px;       /* vlastní odsazení */
+  list-style: none;         /* skryje výchozí marker */
+}
 
-      /* efekt na jednotlivá slova */
-      .lyrics-body span { transition: color .2s ease; cursor:default; }
-      .lyrics-body span:hover { color:#000; }
+.song-summary::-webkit-details-marker {
+  display: none; /* skryje šipku v Chrome/Safari */
+}
 
-      /* drobné tlačítko vedle audia */
-      .song-ctl {
-        padding: 6px 10px;
-        border-radius: 8px;
-        border: 1px solid var(--line);
-        background: transparent;
-        color: var(--ink);
-        cursor: pointer;
-      }
+/* výchozí barva textu */
+.lyrics-body { 
+  color: #fff; 
+  text-align: center; 
+  font-size: 1.1rem; 
+  line-height: 1.4; /* menší mezery mezi řádky */
+}
 
-      .util {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin: 8px 0 0;
-      }
+/* efekt na jednotlivá slova */
+.lyrics-body span { transition: color .2s ease; cursor:default; }
+.lyrics-body span:hover { color:#000; }
 
-      .util a,
-      .util button {
-        padding: 8px 10px;
-        border-radius: 8px;
-        border: 1px solid var(--line);
-        background: transparent;
-        color: var(--ink);
-        cursor: pointer;
-      }
+/* drobné tlačítko vedle audia */
+.song-ctl {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
 
-      @media (max-width: 640px) {
-        .album-head {
-          flex-direction: row;
-        }
-        .album-head img {
-          width: 64px;
-          height: 64px;
-        }
-      }
+.util {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 8px 0 0;
+}
 
-      .close-song {
-        position: absolute;
-        top: 8px;
-        right: 12px; /* vpravo */
-        font-size: 1.5rem;
-        background: transparent;
-        border: none;
-        color: #fff; /* bílé jako text */
-        cursor: pointer;
-        line-height: 1;
-        transition: color 0.2s ease;
-       }
+.util a,
+.util button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+.album-head {
+  flex-direction: row;
+}
         
-       .close-song:hover {
-         color: #000; /* zčerná při hoveru */
-       }
+.album-head img {
+  width: 64px;
+  height: 64px;
+  }
+}
 
-       /* umístíme Back relativně k HLAVIČCE, ne k celé stránce */
-      header {
-       position: relative;
-      }
+.close-song {
+  position: absolute;
+  top: 8px;
+  right: 12px; /* vpravo */
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  color: #fff; /* bílé jako text */
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+        
+.close-song:hover {
+  color: #000; /* zčerná při hoveru */
+}
 
-      /* aby se Back nevešel do h1, dáme mu vpravo trochu místa */
-      h1 { padding-right: 90px; }  /* klidně uprav číslo */
+/* umístíme Back relativně k HLAVIČCE, ne k celé stránce */
+header {
+  position: relative;
+}
+
+/* aby se Back nevešel do h1, dáme mu vpravo trochu místa */
+h1 { padding-right: 90px; }  /* klidně uprav číslo */
 
       
 /* aby byl text vedle záložek v jedné řadě */
@@ -364,7 +371,6 @@ header img:hover {
   gap: 8px; 
   vertical-align: middle;
 }
-
 
 /* Back vpravo nahoře uvnitř headeru */
 .back-icon {
@@ -399,6 +405,66 @@ header img:hover {
 
 .logo-text:hover {
   color: #ffcc00; /* světlejší zlatá při najetí */
+}
+
+/* obálka písně vlevo od názvu */
+.song-art {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  position: relative;
+  left: -7cm;     /* posun vlevo */
+  top: 1cm;     /* posun dolů */
+  z-index: 1;
+}
+
+/* trochu větší mezery mezi obálkou, názvem a audiem */
+.song-top {
+  gap: 14px;
+}
+
+/* na mobilu o chlup menší obálka */
+@media (max-width: 640px) {
+.song-art { width: 48px; height: 48px; }
+}
+
+/* záře za obálkou */
+.song-art::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 255, 200, 0.8), rgba(255, 215, 0, 0.5), transparent 80%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulseGlow 2.5s infinite;
+  filter: blur(20px);
+  z-index: -1;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.7;
+  }
+}
+
+audio {
+  position: relative;
+  left: 2cm;
 }
 
     </style>
@@ -502,8 +568,9 @@ header img:hover {
       <button class="close-song" aria-label="Close song">&times;</button>
 
       <div class="song-top">
-        <h2 class="song-title">THE ONE</h2>
-        <audio class="song-audio" src="audio/the-one.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/songs/the-one.jpg" alt="The One – cover">
+       <h2 class="song-title">THE ONE</h2>
+       <audio class="song-audio" src="audio/the-one.mp3" preload="metadata" controls></audio>
       </div>
 
       <div class="lyrics-body">
@@ -580,10 +647,12 @@ header img:hover {
          <summary class="song-summary">BOATS <span class="chev">▾</span></summary>
         <div class="lyrics" style="position: relative;">
         <button class="close-song" aria-label="Close song">&times;</button>
+
         <div class="song-top">
-         <h2 class="song-title">BOATS</h2>
-         <audio class="song-audio" src="audio/boats.mp3" preload="metadata" controls></audio>
-        </div>
+       <img class="song-art" src="images/songs/boats.jpg" alt="BOATS – cover">
+       <h2 class="song-title">BOATS</h2>
+       <audio class="song-audio" src="audio/boats.mp3" preload="metadata" controls></audio>
+      </div>
 
            <div class="lyrics-body">
             Have we been lying to ourselves again to cover up <br />
