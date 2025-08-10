@@ -251,7 +251,7 @@ details[open] > summary {
   
 .song-title {
   text-align: center;
-  font-size: clamp(24px, 3.2vw, 40px);
+  font-size: 2rem;
   margin: 0;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -426,6 +426,30 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
   gap: 14px;
 }
 
+/* obálka písně vlevo od názvu pro diamonds-metal */
+.song-art-diamonds-metal {
+  display: flex;
+  align-items: center;  /* zarovná vertikálně na střed */
+  gap: 20px;            /* mezera mezi prvky */
+  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
+
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  position: relative;
+  left: 0.7cm;     /* posun vlevo */
+  top: 1cm;     /* posun dolů */
+  z-index: 1;
+}
+
+/* trochu větší mezery mezi obálkou, názvem a audiem pro diamonds-metal */
+.song-top-diamonds-metal {
+  gap: 14px;
+}
+
 /* na mobilu o chlup menší obálka */
 @media (max-width: 640px) {
 .song-art { width: 48px; height: 48px; }
@@ -445,6 +469,172 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
   animation: pulseGlow 2.5s infinite;
   filter: blur(20px);
   z-index: -1;
+}
+
+.song-top-diamonds-metal {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
+}
+
+.song-header-diamonds-metal {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.song-audio-diamonds-metal {
+  flex-shrink: 0;
+  margin-left: 0.5cm;
+}
+
+.song-title-diamonds-metal {
+  margin-left: 4cm;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s linear infinite;
+}
+
+.song-art-diamonds-metal {
+  margin-left: -5cm;
+  top: 1cm;     /* posun dolů */
+  display: flex;
+  align-items: center;  /* zarovná vertikálně na střed */
+  gap: 20px;            /* mezera mezi prvky */
+  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  position: relative;
+  z-index: 1;
+}
+
+.song-audio-running-blind {
+  flex-shrink: 0;
+  margin-left: 0.5cm;
+}
+
+.song-title-running-blind {
+  margin-left: 6cm;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s linear infinite;
+}
+
+.song-art-running-blind {
+  margin-left: -5cm;
+  top: 1cm;     /* posun dolů */
+  display: flex;
+  align-items: center;  /* zarovná vertikálně na střed */
+  gap: 20px;            /* mezera mezi prvky */
+  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  position: relative;
+  z-index: 1;
+}
+
+.song-top-running-blind {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
+}
+
+.song-header-running-blind {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.song-audio-running-blind {
+  flex-shrink: 0;
+  margin-left: 0.5cm;
+}
+
+.song-title-running-blind {
+  margin-left: 4cm;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s linear infinite;
+}
+
+.song-top-blurry-eyes {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
+}
+
+.song-header-blurry-eyes {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.song-audio-blurry-eyes {
+  flex-shrink: 0;
+  margin-left: 0.5cm;
+}
+
+.song-title-blurry-eyes {
+  margin-left: 6cm;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
+  background-size: 300%;
+  background-clip: text;
+  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s linear infinite;
+}
+
+.song-art-blurry-eyes {
+  margin-left: -5cm;
+  top: 1cm;     /* posun dolů */
+  display: flex;
+  align-items: center;  /* zarovná vertikálně na střed */
+  gap: 20px;            /* mezera mezi prvky */
+  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--line);
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes pulseGlow {
@@ -720,17 +910,20 @@ audio {
             Come on let’s right some wrongs <br />
             Come on, come on, come on <br />
             <br />
+          
           </div>
         </details>
 
         <details data-title="DIAMONDS & METALS">
-  <summary class="song-summary">DIAMONDS & METALS <span class="chev">▾</span></summary>
-  <div class="lyrics" style="position: relative;">
-    <button class="close-song" aria-label="Close song">&times;</button>
-    <div class="song-top">
-      <h2 class="song-title">DIAMONDS & METALS</h2>
-      <audio class="song-audio" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
-    </div>
+          <summary class="song-summary">DIAMONDS & METALS <span class="chev">▾</span></summary>
+          <div class="lyrics" style="position: relative;">
+        <button class="close-song" aria-label="Close song">&times;</button>
+    
+       <div class="song-top-diamonds-metal">
+         <img class="song-art-diamonds-metal" src="images/songs/diamonds-metal.jpg" alt="DIAMONDS & METALS – cover">
+         <h2 class="song-title-diamonds-metal">DIAMONDS & METALS</h2>
+        <audio class="song-audio-diamonds-metal" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
+      </div>
 
     <div class="lyrics-body">
         Out on the echoes, right on the edge <br />
@@ -796,18 +989,178 @@ audio {
 
         <details data-title="RUNNING BLIND">
       <summary class="song-summary">RUNNING BLIND<span class="chev">▾</span></summary>
+
      <div class="lyrics" style="position: relative;">
     <button class="close-song" aria-label="Close song">&times;</button>
+
     <div class="song-top">
-      <h2 class="song-title">RUNNING BLIND</h2>
-      <audio class="song-audio" src="audio/running blind.mp3" preload="metadata" controls></audio>
-    </div>
+       <img class="song-art-running-blind" src="images/songs/running-blind.jpg" alt="RUNNING BLIND – cover">
+       <h2 class="song-title-running-blind">RUNNING BLIND</h2>
+       <audio class="song-audio-running-blind" src="audio/running-blind.mp3" preload="metadata" controls></audio>
+      </div>
 
-     <div class="lyrics-body"></div>
+     <div class="lyrics-body">
+       Far from over<br />
+       World on your shoulders<br />
+       And all you feel is pain<br />
+       <br />
+       The battle is endless<br />
+       You’re almost breathless<br />
+       But everything’s at stake<br />
+       <br />
+       And when there are no clear roads to find<br />
+       And you’re out there waitin’ for a sign<br />
+       And when there is no one by your side<br />
+       Trust in your heart to see the light<br />
+       <br />
+       Wherever you are<br />
+       Have faith in the dark<br />
+       When you’re running blind<br />
+       When you’re running blind<br />
+       <br />
+       Now you’ve come so far<br />
+       Against all the odds<br />
+       Keep running blind<br />
+       Keep running blind<br />
+       <br />
+       Keep running blind, blind<br />
+       Keep running blind, blind<br />
+       <br />
+       You write your pages<br />
+       And plot the changes<br />
+       But life has different plans<br />
+       <br />
+       Ya might lose your nerve<br />
+       Might hit some tight curves<br />
+       But don’t you fold your hand<br />
+       <br />
+       And when there are no clear roads to find<br />
+       And you’re out there waitin’ for a sign<br />
+       And when there is no one by your side<br />
+       Trust in your heart to see the light<br />
+       <br />
+       Wherever you are<br />
+       Have faith in the dark<br />
+       When you’re running blind<br />
+       When you’re running blind<br />
+       <br />
+       Now you’ve come so far<br />
+       Against all the odds<br />
+       Keep running blind<br />
+       Keep running blind<br />
+       <br />
+       Keep running blind, blind<br />
+       Keep running blind, blind<br />
+       <br />
+       And when there are no clear roads to find<br />
+       And you’re out there waitin’ for that sign<br />
+       When you feel like no one’s by your side<br />
+       Just know that I’ll be there right behind<br />
+       <br />
+       Wherever you are<br />
+       Have faith in the dark<br />
+       When you’re running blind<br />
+       When you’re running blind<br />
+       <br />
+       Now you’ve come so far<br />
+       Against all the odds<br />
+       Keep running blind<br />
+       Keep running blind<br />
+       <br />
+       Keep running blind, blind<br />
+       <br />
+       Keep running blind<br />
+       Keep running blind<br />
+       <br />
+     
+       </div>
+      </details>
 
+      <details data-title="BLURRY EYES">
+         <summary class="song-summary">BLURRY EYES <span class="chev">▾</span></summary>
+        <div class="lyrics" style="position: relative;">
+        <button class="close-song" aria-label="Close song">&times;</button>
 
-  </div>
-</details>
+        <div class="song-top">
+       <img class="song-art-blurry-eyes" src="images/songs/blurry-eyes.jpg" alt="BLURRY EYES – cover">
+       <h2 class="song-title-blurry-eyes">BLURRY EYES</h2>
+       <audio class="song-audio-blurry-eyes" src="audio/blurry-eyes.mp3" preload="metadata" controls></audio>
+      </div>
+
+     <div class="lyrics-body">
+      I can see a thousand doubts<br />
+      Written on your face right now<br />
+      Your reflection fading in and out<br />
+      Lately it‘s been getting you down<br />
+      <br />
+      You tell me you‘re ok but your<br />
+      Voice don‘t match the words you said<br />
+      I hate that you‘re pushing me away<br />
+      Fighting so hard to take a breath<br />
+      So<br />
+      <br />
+      Oh love, when the river runs dry<br />
+      It‘s hard to see through blurry eyes<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      Oh love, when the river runs high<br />
+      It‘s hard for me to watch you cry<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      So distant when you‘re next to me<br />
+      Hiding all I wanna see<br />
+      The silence in the air we breathe<br />
+      Echoing so hopelessly<br />
+      <br />
+      I called you yesterday and your voice<br />
+      Didn‘t match the words you said<br />
+      I hate, you keep pushing me away<br />
+      Fighting so hard not to break<br />
+      So<br />
+      <br />
+      Oh love, when the river runs dry<br />
+      It‘s hard to see through blurry eyes<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      Oh love, when the river runs high<br />
+      It‘s hard for me to watch you cry<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      All through the highs and the lows<br />
+      When you were drowning in shallow waters<br />
+      I held you close<br />
+      Oh, when you feel all alone<br />
+      and it‘s weighing heavy on your shoulders<br />
+      I hope you‘ll know<br />
+      <br />
+      Oh love, when the river runs dry<br />
+      It‘s hard to see through blurry eyes<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      Oh love, when the river runs high<br />
+      It‘s hard for me to watch you cry<br />
+      Don‘t say you‘re not strong enough<br />
+      To let me love you<br />
+      Just the way you are<br />
+      <br />
+      Oh love, when the river runs dry<br />
+      Oh love, the way you are<br />
+      Don’t say you’re not strong enough<br />
+      Let me love you just the way you are<br />
+      <br />
+
+     </div>
+      </details>
 
       <!-- ALBUM: iD -->
       <section
@@ -827,6 +1180,8 @@ audio {
         </div>
         <!-- Písně -->
       </section>
+
+
 
       <!-- Další alba... -->
     </div>
