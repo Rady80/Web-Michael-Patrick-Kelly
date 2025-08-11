@@ -240,25 +240,25 @@ details[open] > summary {
   display: none;
 }
 
-/* horní řádek v otevřeném detailu: velký název + audio/ovladače */
-.song-top {
-  display: flex;
+/* --- jednotné rozložení pro všechny songy --- */
+.song-top{
+  display: grid;
+  grid-template-columns: 200px 1fr 420px; /* cover | title | audio */
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin: 0.25rem 0 1rem;
+  column-gap: 24px;
+  justify-content: unset; /* ne centrovat celý řádek */
 }
   
 .song-title {
+  margin: 0 !important;        /* vzdálenost od obrázku */
   text-align: center;
   font-size: 2rem;
-  margin: 0;
   font-weight: 800;
   letter-spacing: 0.06em;
   background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
   background-size: 300%;
   background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: colorShift 5s linear infinite;
 }
@@ -272,9 +272,13 @@ details[open] > summary {
 }
   }
 
-.song-audio {
+/* audio – stejné místo a šířka všude */
+.song-audio{
   position: relative;
-  top: 3mm; /* posun dolů o 3 mm */
+  left: -2cm;
+  margin: 0 !important;
+  width: 420px;
+  justify-self: end;
 }
 
 .song-summary {
@@ -410,50 +414,36 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
 
 /* obálka písně vlevo od názvu */
 .song-art {
-  width: 160px;
-  height: 160px;
+  margin: 0 !important;       /* uprav podle potřeby */
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid var(--line);
   box-shadow: 0 2px 6px rgba(0,0,0,.25);
   position: relative;
-  left: -7cm;     /* posun vlevo */
-  top: 1cm;     /* posun dolů */
+  top: 1cm;
+  left: 1cm;
   z-index: 1;
-}
-
-/* trochu větší mezery mezi obálkou, názvem a audiem */
-.song-top {
-  gap: 14px;
-}
-
-/* obálka písně vlevo od názvu pro diamonds-metal */
-.song-art-diamonds-metal {
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  left: 0.7cm;     /* posun vlevo */
-  top: 1cm;     /* posun dolů */
-  z-index: 1;
-}
-
-/* trochu větší mezery mezi obálkou, názvem a audiem pro diamonds-metal */
-.song-top-diamonds-metal {
-  gap: 14px;
 }
 
 /* na mobilu o chlup menší obálka */
 @media (max-width: 640px) {
 .song-art { width: 48px; height: 48px; }
+}
+
+/* responzivně pod 900px */
+@media (max-width: 900px){
+  .song-top{
+    grid-template-columns: 96px 1fr;
+    grid-template-areas:
+      "cover title"
+      "cover audio";
+    row-gap: 10px;
+  }
+  .song-art{ width:96px; height:96px; }
+  .song-title{ grid-area:title; text-align:left; }
+  .song-audio{ grid-area:audio; width:100%; justify-self:start; }
 }
 
 /* záře za obálkou */
@@ -471,418 +461,6 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
   filter: blur(20px);
   z-index: -1;
 }
-
-.song-top-diamonds-metal {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-diamonds-metal {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-diamonds-metal {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-diamonds-metal {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-diamonds-metal {
-  margin-left: -5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-audio-running-blind {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-running-blind {
-  margin-left: 6cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-running-blind {
-  margin-left: -5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-running-blind {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-running-blind {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-running-blind {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-running-blind {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-top-blurry-eyes {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-blurry-eyes {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-blurry-eyes {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-blurry-eyes {
-  margin-left: 6cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-blurry-eyes {
-  margin-left: -5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-art-throwback {
-  margin-left: -7cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-throwback {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-throwback {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-throwback {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-throwback {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-fake-messiah {
-  margin-left: -7cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-fake-messiah {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-fake-messiah {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-fake-messiah {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-fake-messiah {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-paragliding {
-  margin-left: -6.5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-paragliding {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-paragliding {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-paragliding {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-paragliding {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-beautiful-madness {
-  margin-left: -3.5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-beautiful-madness {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-beautiful-madness {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-beautiful-madness {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-beautiful-madness {
-  margin-left: 4cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
-.song-art-golden-age {
-  margin-left: -3.5cm;
-  top: 1cm;     /* posun dolů */
-  display: flex;
-  align-items: center;  /* zarovná vertikálně na střed */
-  gap: 20px;            /* mezera mezi prvky */
-  flex-wrap: wrap;      /* aby se to při menším okně zalomilo */
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid var(--line);
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  position: relative;
-  z-index: 1;
-}
-
-.song-top-golden-age {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap; /* aby se to při menším okně zalomilo */
-}
-
-.song-header-golden-age {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.song-audio-golden-age {
-  flex-shrink: 0;
-  margin-left: 0.5cm;
-}
-
-.song-title-golden-age {
-  margin-left: 8cm;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: linear-gradient(90deg, #fff8d6, #f2d16b, #d2a600);
-  background-size: 300%;
-  background-clip: text;
-  -webkit-background-clip: text; /* pro Chrome, Safari */
-  -webkit-text-fill-color: transparent;
-  animation: colorShift 5s linear infinite;
-}
-
 
 @keyframes pulseGlow {
   0% {
@@ -1166,10 +744,10 @@ audio {
           <div class="lyrics" style="position: relative;">
         <button class="close-song" aria-label="Close song">&times;</button>
     
-       <div class="song-top-diamonds-metal">
-         <img class="song-art-diamonds-metal" src="images/background/diamonds-metal.jpg" alt="DIAMONDS & METALS – cover">
-         <h2 class="song-title-diamonds-metal">DIAMONDS & METALS</h2>
-        <audio class="song-audio-diamonds-metal" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
+       <div class="song-top">
+         <img class="song-art" src="images/background/diamonds-metal.jpg" alt="DIAMONDS & METALS – cover">
+         <h2 class="song-title">DIAMONDS & METALS</h2>
+        <audio class="song-audio" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
       </div>
 
     <div class="lyrics-body">
@@ -1241,9 +819,9 @@ audio {
     <button class="close-song" aria-label="Close song">&times;</button>
 
     <div class="song-top">
-       <img class="song-art-running-blind" src="images/background/running-blind.jpg" alt="RUNNING BLIND – cover">
-       <h2 class="song-title-running-blind">RUNNING BLIND</h2>
-       <audio class="song-audio-running-blind" src="audio/running-blind.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/running-blind.jpg" alt="RUNNING BLIND – cover">
+       <h2 class="song-title">RUNNING BLIND</h2>
+       <audio class="song-audio" src="audio/running-blind.mp3" preload="metadata" controls></audio>
       </div>
 
      <div class="lyrics-body">
@@ -1329,9 +907,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-blurry-eyes" src="images/background/blurry-eyes.jpg" alt="BLURRY EYES – cover">
-       <h2 class="song-title-blurry-eyes">BLURRY EYES</h2>
-       <audio class="song-audio-blurry-eyes" src="audio/blurry-eyes.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/blurry-eyes.jpg" alt="BLURRY EYES – cover">
+       <h2 class="song-title">BLURRY EYES</h2>
+       <audio class="song-audio" src="audio/blurry-eyes.mp3" preload="metadata" controls></audio>
       </div>
 
      <div class="lyrics-body">
@@ -1415,9 +993,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-throwback" src="images/background/throwback.jpg" alt="THROWBACK – cover">
-       <h2 class="song-title-throwback">THROWBACK</h2>
-       <audio class="song-audio-throwback" src="audio/throwback.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/throwback.jpg" alt="THROWBACK – cover">
+       <h2 class="song-title">THROWBACK</h2>
+       <audio class="song-audio" src="audio/throwback.mp3" preload="metadata" controls></audio>
       </div>
 
       <div class="lyrics-body">
@@ -1491,9 +1069,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-fake-messiah" src="images/background/fake-messiah.jpg" alt="FAKE MESSIAH – cover">
-       <h2 class="song-title-fake-messiah">FAKE MESSIAH</h2>
-       <audio class="song-audio-fake-messiah" src="audio/fake-messiah.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/fake-messiah.jpg" alt="FAKE MESSIAH – cover">
+       <h2 class="song-title">FAKE MESSIAH</h2>
+       <audio class="song-audio" src="audio/fake-messiah.mp3" preload="metadata" controls></audio>
       </div>
 
     <div class="lyrics-body">
@@ -1575,9 +1153,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-paragliding" src="images/background/paragliding.jpg" alt="PARAGLIDING – cover">
-       <h2 class="song-title-paragliding">PARAGLIDING</h2>
-       <audio class="song-audio-paragliding" src="audio/paragliding.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/paragliding.jpg" alt="PARAGLIDING – cover">
+       <h2 class="song-title">PARAGLIDING</h2>
+       <audio class="song-audio" src="audio/paragliding.mp3" preload="metadata" controls></audio>
       </div>
 
     <div class="lyrics-body">
@@ -1656,9 +1234,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-beautiful-madness" src="images/background/beautiful-madness.jpg" alt="BEAUTIFUL MADNESS – cover">
-       <h2 class="song-title-beautiful-madness">BEAUTIFUL MADNESS</h2>
-       <audio class="song-audio-beautiful-madness" src="audio/beautiful-madness.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/beautiful-madness.jpg" alt="BEAUTIFUL MADNESS – cover">
+       <h2 class="song-title">BEAUTIFUL MADNESS</h2>
+       <audio class="song-audio" src="audio/beautiful-madness.mp3" preload="metadata" controls></audio>
       </div>
 
     <div class="lyrics-body">
@@ -1758,9 +1336,9 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-golden-age" src="images/background/golden-age.jpg" alt="BEAUTIFUL MADNESS – cover">
-       <h2 class="song-title-golden-age">GOLDEN AGE</h2>
-       <audio class="song-audio-golden-age" src="audio/golden-age.mp3" preload="metadata" controls></audio>
+       <img class="song-art" src="images/background/golden-age.jpg" alt="BEAUTIFUL MADNESS – cover">
+       <h2 class="song-title">GOLDEN AGE</h2>
+       <audio class="song-audio" src="audio/golden-age.mp3" preload="metadata" controls></audio>
       </div>
 
     <div class="lyrics-body">
