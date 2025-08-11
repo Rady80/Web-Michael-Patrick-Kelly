@@ -204,7 +204,7 @@ nav a:hover {
   width: 1200px;
   height: 500px;
   padding: 1.5rem;
-  background-image: url("images/brief.jpg");
+  background-image: url("images/pozadi.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 1rem;
@@ -224,38 +224,6 @@ nav a:hover {
   color: rgb(8, 8, 8);
   cursor: pointer;
   z-index: 20;
-}
-
-.bio-heading {
-  font-family: "Covered By Your Grace", cursive;
-  font-size: 2.3rem;
-  background: linear-gradient(270deg, #cf7b1a, #0c0700, #860f0f, #886b0c);
-  background-size: 900% 900%;
-  background-clip: text; /* standardní verze */
-  -webkit-background-clip: text; /* prefix pro Chrome a Safari */
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 20s ease infinite, heartbeat 3s ease-in-out infinite;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-@keyframes heartbeat {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  14% {
-    transform: scale(1.2);
-  }
-  28% {
-    transform: scale(1);
-  }
-  42% {
-    transform: scale(1.2);
-  }
-  70% {
-    transform: scale(1);
-  }
 }
 
 /* Responsivní úpravy pro menší obrazovky */
@@ -306,5 +274,50 @@ nav a:hover {
     height: auto;
     padding: 0.5rem;
     font-size: 0.85rem;
+  }
+}
+
+/* centrum okna s biografií */
+.overlay-box {
+  text-align: center;
+}
+
+/* NADPIS – čistý text bez pozadí */
+.overlay-box h3.bio-heading {
+  display: inline-block;
+  font-family: "Georgia", serif; /* ozdobnější styl */
+  margin: 0 auto 16px;
+  font-size: clamp(24px, 2.4vw, 36px);
+  font-weight: 800;
+  line-height: 1.1;
+
+  /* duhový efekt */
+  background-image: linear-gradient(
+    90deg,
+    #cf831f,
+    #cf6f15,
+    #cf4015,
+    #8cff66,
+    #40d8ff,
+    #6f8dff,
+    #c44ab9,
+    #c07bff,
+    #582688
+  );
+  background-size: 300% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25); /* jen jemné doostření */
+  animation: rainbow-move 8s linear infinite;
+}
+
+/* animace duhy */
+@keyframes rainbow-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
   }
 }
