@@ -56,8 +56,30 @@ header img:hover {
 }
       
 h1 {
-  font-size: clamp(22px, 3vw, 32px);
-  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    rgb(223, 197, 149),
+    orange,
+    yellow,
+    rgb(20, 172, 20),
+    cyan,
+    blue,
+    violet,
+    red
+  );
+  background-size: 400% 100%;
+  background-clip: text;       /* standardní verze */
+  -webkit-background-clip: text; /* prefix pro WebKit prohlížeče */
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-move 6s linear infinite;
+}
+
+/* Animace posunu duhového pásu */
+@keyframes rainbow-move {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .tabs {
@@ -402,14 +424,50 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
 }
 
 .logo-text {
+  position: relative;          /* ← důležité */
+  margin-left: 1cm; /* posun doprava */
+  display: inline-block;       /* ← doporučené */
   font-size: clamp(18px, 2.5vw, 26px);
   font-weight: bold;
-  color: #8DB580; /* stejná barva jako logo */
+  color: #ffd700; /* Zlatá */
   letter-spacing: 0.05em;
+  animation: pulse 2s ease-in-out infinite;
+  text-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow;
 }
 
 .logo-text:hover {
-  color: #ffcc00; /* světlejší zlatá při najetí */
+  color: #7ed163; /* stejná barva jako logo */
+}
+
+/* Efekt lesku přes text */
+.logo-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 35%;                  /* užší pruh, nevypadá jako pozadí */
+  height: 100%;
+  pointer-events: none;        /* neblokuje kliky */
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255,255,255,0.2) 50%,
+    transparent 80%
+  );
+  filter: blur(0.5px);         /* jemnější přechod */
+  animation: shine 2.6s linear infinite;
+}
+
+/* Pulzování */
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 5px #ffd700, 0 0 10px #ffec8b;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 20px #ffd700, 0 0 30px #fff7b3;
+    transform: scale(1.05);
+  }
 }
 
 /* obálka písně vlevo od názvu */
@@ -429,7 +487,7 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
 
 /* na mobilu o chlup menší obálka */
 @media (max-width: 640px) {
-.song-art { width: 48px; height: 48px; }
+  .song-art { width: 48px; height: 48px; }
 }
 
 /* responzivně pod 900px */
@@ -480,6 +538,45 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
 audio {
   position: relative;
   left: 2cm;
+}
+
+/* Jemné "dýchání" obalů v hlavičce */
+header img {
+  animation: breathe 4s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+/* Stagger (postupné zpoždění pro 6 obalů) */
+header img:nth-of-type(1) { animation-delay: 0s; }
+header img:nth-of-type(2) { animation-delay: .25s; }
+header img:nth-of-type(3) { animation-delay: .5s; }
+header img:nth-of-type(4) { animation-delay: .75s; }
+header img:nth-of-type(5) { animation-delay: 1s; }
+header img:nth-of-type(6) { animation-delay: 1.25s; }
+
+/* Při hoveru necháme tvoje zvětšení vyhrát a animation pozastavíme */
+header img:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+/* Klíčové snímky: jemné pulzování + nádech stínu */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0,0,0,.25);
+    filter: drop-shadow(0 0 0 rgba(255, 235, 130, 0));
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    filter: drop-shadow(0 0 8px rgba(255, 235, 130, .25));
+  }
+}
+
+/* Respekt k reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  header img { animation: none; }
 }
 
     </style>
