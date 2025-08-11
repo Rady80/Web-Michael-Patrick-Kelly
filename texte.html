@@ -19,13 +19,13 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
   sans-serif;
-  background: url("images/brief.jpg") no-repeat center center fixed;
+  background: url("images/nb.jpg") no-repeat center center fixed;
   background-size: cover;
   color: var(--ink);
 }
 
 .wrap {
-  max-width: 1260px; /* pevná šířka */
+  max-width: 1340px; /* pevná šířka */
   height: auto; /* pevná výška */
   margin: 1cm auto 0; /* ← přidáno: posun dolů o 2 cm */
   padding: 24px;
@@ -107,7 +107,7 @@ h1 {
 
 .album {
   display: none;
-  background-color: #e7ad40dc;
+  background-color: #98775D;
   border-radius: 14px;
   padding: 20px;
 }
@@ -381,10 +381,10 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
   align-items: center;
   justify-content: center;
   padding: 0.4rem 1rem;
-  border: 1px solid #d4c98a;
+  border: 1px solid #f5f3f3;
   border-radius: 2rem;
-  background-color: transparent;
-  color: #fff;
+  background-color: #f0be52; /* třeba světle žlutá */
+  color: #000;
   font-size: 0.9rem;
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -392,14 +392,15 @@ h1 { padding-right: 90px; }  /* klidně uprav číslo */
 
 .back-icon:hover {
   background: var(--panel);
-  color: #000;
+  color: #f5f3f3;
+  background-color: #98775D; 
   border-color: transparent;
 }
 
 .logo-text {
   font-size: clamp(18px, 2.5vw, 26px);
   font-weight: bold;
-  color: #e7b444; /* stejná barva jako logo */
+  color: #8DB580; /* stejná barva jako logo */
   letter-spacing: 0.05em;
 }
 
@@ -917,7 +918,7 @@ audio {
 
         <a href="index.html" class="back-icon" title="Zpět na hlavní stránku">← Back</a>
 
-       <h1>Texte</h1>
+       <h1>Albums, lyrics, listening</h1>
 
       <!-- ZÁLOŽKY -->
       <nav class="tabs" role="tablist" aria-label="Alba">
@@ -1004,7 +1005,7 @@ audio {
       <button class="close-song" aria-label="Close song">&times;</button>
 
       <div class="song-top">
-       <img class="song-art" src="images/songs/the-one.jpg" alt="The One – cover">
+       <img class="song-art" src="images/background/the-one.jpg" alt="The One – cover">
        <h2 class="song-title">THE ONE</h2>
        <audio class="song-audio" src="audio/the-one.mp3" preload="metadata" controls></audio>
       </div>
@@ -1065,7 +1066,7 @@ audio {
         <div class="album-head">
           <img src="images/albums/boats.jpg" alt="Obal alba BOATS" />
           <div>
-            <h2>BOATS <span class="year">2021</span></h2>
+            <h2>B•O•A•T•S <span class="year">2021</span></h2>
           </div>
         </div>
 
@@ -1080,12 +1081,12 @@ audio {
 
         <!-- PÍSNĚ -->
         <details data-title="BOATS">
-         <summary class="song-summary">BOATS <span class="chev">▾</span></summary>
+         <summary class="song-summary">BOATS<span class="chev">▾</span></summary>
         <div class="lyrics" style="position: relative;">
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art" src="images/songs/boats.jpg" alt="BOATS – cover">
+       <img class="song-art" src="images/background/boats.jpg" alt="BOATS – cover">
        <h2 class="song-title">BOATS</h2>
        <audio class="song-audio" src="audio/boats.mp3" preload="metadata" controls></audio>
       </div>
@@ -1166,7 +1167,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
     
        <div class="song-top-diamonds-metal">
-         <img class="song-art-diamonds-metal" src="images/songs/diamonds-metal.jpg" alt="DIAMONDS & METALS – cover">
+         <img class="song-art-diamonds-metal" src="images/background/diamonds-metal.jpg" alt="DIAMONDS & METALS – cover">
          <h2 class="song-title-diamonds-metal">DIAMONDS & METALS</h2>
         <audio class="song-audio-diamonds-metal" src="audio/diamonds-metal.mp3" preload="metadata" controls></audio>
       </div>
@@ -1240,7 +1241,7 @@ audio {
     <button class="close-song" aria-label="Close song">&times;</button>
 
     <div class="song-top">
-       <img class="song-art-running-blind" src="images/songs/running-blind.jpg" alt="RUNNING BLIND – cover">
+       <img class="song-art-running-blind" src="images/background/running-blind.jpg" alt="RUNNING BLIND – cover">
        <h2 class="song-title-running-blind">RUNNING BLIND</h2>
        <audio class="song-audio-running-blind" src="audio/running-blind.mp3" preload="metadata" controls></audio>
       </div>
@@ -1328,7 +1329,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-blurry-eyes" src="images/songs/blurry-eyes.jpg" alt="BLURRY EYES – cover">
+       <img class="song-art-blurry-eyes" src="images/background/blurry-eyes.jpg" alt="BLURRY EYES – cover">
        <h2 class="song-title-blurry-eyes">BLURRY EYES</h2>
        <audio class="song-audio-blurry-eyes" src="audio/blurry-eyes.mp3" preload="metadata" controls></audio>
       </div>
@@ -1414,7 +1415,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-throwback" src="images/songs/throwback.jpg" alt="THROWBACK – cover">
+       <img class="song-art-throwback" src="images/background/throwback.jpg" alt="THROWBACK – cover">
        <h2 class="song-title-throwback">THROWBACK</h2>
        <audio class="song-audio-throwback" src="audio/throwback.mp3" preload="metadata" controls></audio>
       </div>
@@ -1490,7 +1491,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-fake-messiah" src="images/songs/fake-messiah.jpg" alt="FAKE MESSIAH – cover">
+       <img class="song-art-fake-messiah" src="images/background/fake-messiah.jpg" alt="FAKE MESSIAH – cover">
        <h2 class="song-title-fake-messiah">FAKE MESSIAH</h2>
        <audio class="song-audio-fake-messiah" src="audio/fake-messiah.mp3" preload="metadata" controls></audio>
       </div>
@@ -1574,7 +1575,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-paragliding" src="images/songs/paragliding.jpg" alt="PARAGLIDING – cover">
+       <img class="song-art-paragliding" src="images/background/paragliding.jpg" alt="PARAGLIDING – cover">
        <h2 class="song-title-paragliding">PARAGLIDING</h2>
        <audio class="song-audio-paragliding" src="audio/paragliding.mp3" preload="metadata" controls></audio>
       </div>
@@ -1655,7 +1656,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-beautiful-madness" src="images/songs/beautiful-madness.jpg" alt="BEAUTIFUL MADNESS – cover">
+       <img class="song-art-beautiful-madness" src="images/background/beautiful-madness.jpg" alt="BEAUTIFUL MADNESS – cover">
        <h2 class="song-title-beautiful-madness">BEAUTIFUL MADNESS</h2>
        <audio class="song-audio-beautiful-madness" src="audio/beautiful-madness.mp3" preload="metadata" controls></audio>
       </div>
@@ -1757,7 +1758,7 @@ audio {
         <button class="close-song" aria-label="Close song">&times;</button>
 
         <div class="song-top">
-       <img class="song-art-golden-age" src="images/songs/golden-age.jpg" alt="BEAUTIFUL MADNESS – cover">
+       <img class="song-art-golden-age" src="images/background/golden-age.jpg" alt="BEAUTIFUL MADNESS – cover">
        <h2 class="song-title-golden-age">GOLDEN AGE</h2>
        <audio class="song-audio-golden-age" src="audio/golden-age.mp3" preload="metadata" controls></audio>
       </div>
