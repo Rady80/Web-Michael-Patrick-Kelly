@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Photo Gallery</title>
+    <style>
+      :root {
+        --cols: 3; /* počet sloupců na desktopu */
+        --card-w: 520px; /* šířka jedné karty (měň si sama) */
+        --gutter: 10px; /* mezery mezi kartami (měň si sama) */
+        --side-pad: 64px; /* odsazení od krajů stránky (měň si sama) */
+        --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        --side-pad: 2cm; /* odsazení od krajů stránky */
+        --radius: 28px; /* větší zaoblení rohů (klidně změň na 24/32px) */
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+          sans-serif;
+        color: #fff;
+        background: url("images/pozadi.jpg") center/cover fixed no-repeat;
+      }
+
+      /* Back vpravo nahoře */
+      .back-icon {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 1001;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+        padding: 8px 14px;
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        transition: background 0.25s ease, transform 0.2s ease;
+      }
+      .back-icon:hover {
+        background: rgba(255, 255, 255, 0.85);
+        color: #111;
+        transform: translateY(-1px);
+      }
+
+      /* Nadpis uprostřed s plynoucím gradientem */
+      h1 {
+        display: block;
+        width: fit-content;
+        margin: 28px auto 24px;
+        text-align: center;
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        letter-spacing: 0.02em;
+        text-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+        background: linear-gradient(
+          90deg,
+          #da6b6b,
+          #ffd166,
+          #ff8c42,
+          #7ace42,
+          #8f67ff,
+          #44e1ff,
+          #ffffff
+        );
+        background-size: 200% 100%;
+        background-position: 0% 50%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: gradientMove 8s linear infinite;
+        will-change: background-position;
+      }
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* obal – zaručí odsazení od krajů vždy */
+      .wrap {
+        box-sizing: border-box;
+        max-width: calc(
+          var(--cols) * var(--card-w) + (var(--cols) - 1) * var(--gutter)
+        );
+        margin-inline: auto;
+        padding-inline: var(--side-pad);
+        padding-bottom: 60px;
+      }
+
+      /* mřížka – jen přes proměnné, žádné další přepisování! */
+      .gallery {
+        display: grid;
+        gap: var(--gutter);
+        grid-template-columns: repeat(var(--cols), var(--card-w));
+        justify-content: center;
+      }
+      figure {
+        margin: 0;
+      }
+      faultní mezery figure */
+
+      /* karty – jedna jediná verze */
+      .card {
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.25);
+        box-shadow: var(--shadow);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        cursor: pointer;
+        border-radius: var(--radius);
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 16/9; /* chceš jiný poměr? změň tady */
+        filter: saturate(1.05) contrast(1.02) brightness(0.98);
+        transition: transform 0.35s ease;
+        border-radius: var(--radius);
+      }
+      .card:hover img {
+        transform: scale(1.02);
+      }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.92);
+      }
+      .lightbox-content {
+        position: relative;
+        display: inline-block;
+      }
+      .lightbox img {
+        max-width: 95vw;
+        max-height: 92vh;
+        border-radius: var(--radius);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        border: none;
+        font-size: 26px;
+        padding: 6px 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+      .close:hover {
+        background: rgba(255, 255, 255, 0.7);
+        color: #000;
+        transform: scale(1.1);
+      }
+
+      .nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 40px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+      }
+      .nav:hover {
+        background: rgba(255, 255, 255, 0.7);
+        color: #000;
+        transform: scale(1.1) translateY(-50%);
+      }
+      .prev {
+        left: 20px;
+      }
+      .next {
+        right: 20px;
+      }
+
+      /* Responzivní zlomy */
+      @media (max-width: 1300px) {
+        :root {
+          --cols: 2;
+        }
+      }
+      @media (max-width: 760px) {
+        :root {
+          --cols: 1;
+        }
+      }
+      @media (max-width: 1500px) {
+        :root {
+          --card-w: 420px;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .back-icon {
+          top: 12px;
+          right: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-icon" title="Zpět na hlavní stránku"
+      >← Back</a
+    >
+
+    <h1>Photo Gallery</h1>
+
+    <div class="wrap">
+      <div class="gallery" id="gallery">
+        <figure class="card">
+          <img
+            src="images/gallery/photo1.jpg"
+            data-full="images/gallery/photo1.jpg"
+            alt="Photo 1"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo2.jpg"
+            data-full="images/gallery/photo2.jpg"
+            alt="Photo 2"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo3.jpg"
+            data-full="images/gallery/photo3.jpg"
+            alt="Photo 3"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo4.jpg"
+            data-full="images/gallery/photo4.jpg"
+            alt="Photo 4"
+          />
+        </figure>
+        <!-- můžeš přidat další figure -->
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox-content">
+        <button class="close" id="btnClose" aria-label="Zavřít">✕</button>
+        <img id="lbImg" alt="" />
+        <button class="nav prev" id="prev">‹</button>
+        <button class="nav next" id="next">›</button>
+      </div>
+    </div>
+
+    <script>
+      const gallery = document.getElementById("gallery");
+      const lightbox = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lbImg");
+      const btnClose = document.getElementById("btnClose");
+      const btnPrev = document.getElementById("prev");
+      const btnNext = document.getElementById("next");
+
+      const images = [...gallery.querySelectorAll("img")];
+      let currentIndex = -1;
+
+      function openLightbox(index) {
+        currentIndex = index;
+        const full = images[index].dataset.full || images[index].src;
+        lbImg.src = full;
+        lbImg.alt = images[index].alt || "";
+        lightbox.style.display = "flex";
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+      function closeLightbox() {
+        lightbox.style.display = "none";
+        lightbox.setAttribute("aria-hidden", "true");
+        lbImg.src = "";
+        document.body.style.overflow = "";
+      }
+      function showImage(dir) {
+        if (currentIndex < 0) return;
+        currentIndex = (currentIndex + dir + images.length) % images.length;
+        const full =
+          images[currentIndex].dataset.full || images[currentIndex].src;
+        lbImg.src = full;
+        lbImg.alt = images[currentIndex].alt || "";
+      }
+
+      gallery.addEventListener("click", (e) => {
+        const img = e.target.closest("img");
+        if (!img) return;
+        openLightbox(images.indexOf(img));
+      });
+
+      btnClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (lightbox.getAttribute("aria-hidden") === "true") return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowLeft") showImage(-1);
+        if (e.key === "ArrowRight") showImage(1);
+      });
+
+      if (btnPrev) btnPrev.addEventListener("click", () => showImage(-1));
+      if (btnNext) btnNext.addEventListener("click", () => showImage(1));
+    </script>
+  </body>
+</html>
