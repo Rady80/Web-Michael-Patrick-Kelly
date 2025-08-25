@@ -7,8 +7,9 @@
     <style>
       :root {
         --cols: 3; /* počet sloupců na desktopu */
-        --card-w: 520px; /* šířka jedné karty (měň si sama) */
-        --gutter: 10px; /* mezery mezi kartami (měň si sama) */
+        --card-w: 460px; /* šířka jedné karty (měň si sama) */
+        --card-h: 420px; /* výška jedné karty (měň si sama) */
+        --gutter: 16px; /* mezery mezi kartami (měň si sama) */
         --side-pad: 64px; /* odsazení od krajů stránky (měň si sama) */
         --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
         --side-pad: 2cm; /* odsazení od krajů stránky */
@@ -31,6 +32,7 @@
       /* Back vpravo nahoře */
       .back-icon {
         position: fixed;
+        margin-left: -2cm; /* posune odkaz o 2 cm doleva */
         top: 18px;
         right: 18px;
         z-index: 1001;
@@ -43,6 +45,7 @@
         box-shadow: var(--shadow);
         transition: background 0.25s ease, transform 0.2s ease;
       }
+
       .back-icon:hover {
         background: rgba(255, 255, 255, 0.85);
         color: #111;
@@ -60,7 +63,7 @@
         text-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
         background: linear-gradient(
           90deg,
-          #da6b6b,
+          #e7880a,
           #ffd166,
           #ff8c42,
           #7ace42,
@@ -111,6 +114,7 @@
 
       /* karty – jedna jediná verze */
       .card {
+        height: var(--card-h);
         border-radius: var(--radius);
         overflow: hidden;
         background: rgba(0, 0, 0, 0.25);
@@ -265,7 +269,335 @@
             alt="Photo 4"
           />
         </figure>
-        <!-- můžeš přidat další figure -->
+        <figure class="card">
+          <img
+            src="images/gallery/photo5.jpg"
+            data-full="images/gallery/photo5.jpg"
+            alt="Photo 5"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo6.jpg"
+            data-full="images/gallery/photo6.jpg"
+            alt="Photo 6"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo7.jpg"
+            data-full="images/gallery/photo7.jpg"
+            alt="Photo 7"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo8.jpg"
+            data-full="images/gallery/photo8.jpg"
+            alt="Photo 8"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo9.jpg"
+            data-full="images/gallery/photo9.jpg"
+            alt="Photo 9"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo10.jpg"
+            data-full="images/gallery/photo10.jpg"
+            alt="Photo 10"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo11.jpg"
+            data-full="images/gallery/photo11.jpg"
+            alt="Photo 11"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo12.jpg"
+            data-full="images/gallery/photo12.jpg"
+            alt="Photo 12"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo13.jpg"
+            data-full="images/gallery/photo13.jpg"
+            alt="Photo 13"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo14.jpg"
+            data-full="images/gallery/photo14.jpg"
+            alt="Photo 14"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo15.jpg"
+            data-full="images/gallery/photo15.jpg"
+            alt="Photo 15"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo16.jpg"
+            data-full="images/gallery/photo16.jpg"
+            alt="Photo 16"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo17.jpg"
+            data-full="images/gallery/photo17.jpg"
+            alt="Photo 17"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo18.jpg"
+            data-full="images/gallery/photo18.jpg"
+            alt="Photo 18"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo19.jpg"
+            data-full="images/gallery/photo19.jpg"
+            alt="Photo 19"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo20.jpg"
+            data-full="images/gallery/photo20.jpg"
+            alt="Photo 20"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo21.jpg"
+            data-full="images/gallery/photo21.jpg"
+            alt="Photo 21"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo22.jpg"
+            data-full="images/gallery/photo22.jpg"
+            alt="Photo 22"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo23.jpg"
+            data-full="images/gallery/photo23.jpg"
+            alt="Photo 23"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo24.jpg"
+            data-full="images/gallery/photo24.jpg"
+            alt="Photo 24"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo25.jpg"
+            data-full="images/gallery/photo25.jpg"
+            alt="Photo 25"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo26.jpg"
+            data-full="images/gallery/photo26.jpg"
+            alt="Photo 26"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo27.jpg"
+            data-full="images/gallery/photo27.jpg"
+            alt="Photo 27"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo28.jpg"
+            data-full="images/gallery/photo28.jpg"
+            alt="Photo 28"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo29.jpg"
+            data-full="images/gallery/photo29.jpg"
+            alt="Photo 29"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo30.jpg"
+            data-full="images/gallery/photo30.jpg"
+            alt="Photo 30"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo31.jpg"
+            data-full="images/gallery/photo31.jpg"
+            alt="Photo 31"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo32.jpg"
+            data-full="images/gallery/photo32.jpg"
+            alt="Photo 32"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo33.jpg"
+            data-full="images/gallery/photo33.jpg"
+            alt="Photo 33"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo34.jpg"
+            data-full="images/gallery/photo34.jpg"
+            alt="Photo 34"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo35.jpg"
+            data-full="images/gallery/photo35.jpg"
+            alt="Photo 35"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo36.jpg"
+            data-full="images/gallery/photo36.jpg"
+            alt="Photo 36"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo37.jpg"
+            data-full="images/gallery/photo37.jpg"
+            alt="Photo 37"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo38.jpg"
+            data-full="images/gallery/photo38.jpg"
+            alt="Photo 38"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo39.jpg"
+            data-full="images/gallery/photo39.jpg"
+            alt="Photo 39"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo40.jpg"
+            data-full="images/gallery/photo40.jpg"
+            alt="Photo 40"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo41.jpg"
+            data-full="images/gallery/photo41.jpg"
+            alt="Photo 41"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo42.jpg"
+            data-full="images/gallery/photo42.jpg"
+            alt="Photo 42"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo43.jpg"
+            data-full="images/gallery/photo43.jpg"
+            alt="Photo 43"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo44.jpg"
+            data-full="images/gallery/photo44.jpg"
+            alt="Photo 44"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo45.jpg"
+            data-full="images/gallery/photo45.jpg"
+            alt="Photo 45"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo46.jpg"
+            data-full="images/gallery/photo46.jpg"
+            alt="Photo 46"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo47.jpg"
+            data-full="images/gallery/photo47.jpg"
+            alt="Photo 47"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo48.jpg"
+            data-full="images/gallery/photo48.jpg"
+            alt="Photo 48"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo49.jpg"
+            data-full="images/gallery/photo49.jpg"
+            alt="Photo 49"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo50.jpg"
+            data-full="images/gallery/photo50.jpg"
+            alt="Photo 50"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo51.jpg"
+            data-full="images/gallery/photo51.jpg"
+            alt="Photo 51"
+          />
+        </figure>
       </div>
     </div>
 
