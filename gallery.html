@@ -10,7 +10,6 @@
         --card-w: 460px; /* šířka jedné karty (měň si sama) */
         --card-h: 420px; /* výška jedné karty (měň si sama) */
         --gutter: 16px; /* mezery mezi kartami (měň si sama) */
-        --side-pad: 64px; /* odsazení od krajů stránky (měň si sama) */
         --shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
         --side-pad: 2cm; /* odsazení od krajů stránky */
         --radius: 28px; /* větší zaoblení rohů (klidně změň na 24/32px) */
@@ -62,7 +61,7 @@
         text-align: center;
         font-size: clamp(2rem, 6vw, 3.2rem);
         letter-spacing: 0.02em;
-        text-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+        text-shadow: none; /* čistší okraj */
         background: linear-gradient(
           90deg,
           #e7880a,
@@ -113,21 +112,27 @@
         grid-template-columns: repeat(var(--cols), var(--card-w));
         justify-content: center;
       }
+
+      /* odstranění defaultní mezery u <figure> */
       figure {
         margin: 0;
       }
-      faultní mezery figure */
 
-        /* karty – jedna jediná verze */
-        .card {
+      /* karty – jedna jediná verze */
+      .card {
         height: var(--card-h);
         border-radius: var(--radius);
-        overflow: hidden;
-        background: rgba(0, 0, 0, 0.25);
+        overflow: hidden; /* ořízne vše mimo radius */
+        background: rgba(
+          0,
+          0,
+          0,
+          0.25
+        ); /* můžeš i #000 pro 100% jistotu rohů */
         box-shadow: var(--shadow);
         transition: transform 0.25s ease, box-shadow 0.25s ease;
         cursor: pointer;
-        border-radius: var(--radius);
+        line-height: 0; /* zruší baseline mezeru */
       }
 
       .card:hover {
@@ -140,11 +145,18 @@
         height: 100%;
         display: block;
         object-fit: cover;
-        aspect-ratio: 16/9; /* chceš jiný poměr? změň tady */
+        aspect-ratio: 16/9;
         filter: saturate(1.05) contrast(1.02) brightness(0.98);
         transition: transform 0.35s ease;
-        border-radius: var(--radius);
+
+        /* DŮLEŽITÉ: bez radiusu na obrázku */
+        border-radius: 0;
+
+        /* vyhladí hrany, eliminuje sub-pixel halo */
+        transform: translateZ(0);
+        will-change: transform;
       }
+
       .card:hover img {
         transform: scale(1.02);
       }
@@ -153,9 +165,6 @@
       .lightbox {
         position: fixed;
         inset: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -647,6 +656,77 @@
             src="images/gallery/photo51.jpg"
             data-full="images/gallery/photo51.jpg"
             alt="Photo 51"
+          />
+        </figure>
+        <figure class="card">
+          <img
+            src="images/gallery/photo52.jpg"
+            data-full="images/gallery/photo52.jpg"
+            alt="Photo 52"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo53.jpg"
+            data-full="images/gallery/photo53.jpg"
+            alt="Photo 53"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo54.jpg"
+            data-full="images/gallery/photo54.jpg"
+            alt="Photo 54"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo55.jpg"
+            data-full="images/gallery/photo55.jpg"
+            alt="Photo 55"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo56.jpg"
+            data-full="images/gallery/photo56.jpg"
+            alt="Photo 56"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo57.jpg"
+            data-full="images/gallery/photo57.jpg"
+            alt="Photo 57"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo58.jpg"
+            data-full="images/gallery/photo58.jpg"
+            alt="Photo 58"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo59.jpg"
+            data-full="images/gallery/photo59.jpg"
+            alt="Photo 59"
+          />
+        </figure>
+
+        <figure class="card">
+          <img
+            src="images/gallery/photo60.jpg"
+            data-full="images/gallery/photo60.jpg"
+            alt="Photo 60"
           />
         </figure>
       </div>
